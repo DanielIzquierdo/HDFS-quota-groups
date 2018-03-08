@@ -14,3 +14,14 @@
 1) para asignarle una cuota de almacenamiento en común a un grupo(existente en Ambari, ya sea local o del LDAP) de usuarios: `python create_dirs_and_quota.py`
 
 1) puedes chequear que la cuota fue asignada a los usuarios del grupo con el comando: `hdfs dfs -count -h -q /user/*`
+
+
+
+
+me basé en los siguientes links para crear el repositorio:
+* http://hadoop.apache.org/docs/r2.7.2/hadoop-project-dist/hadoop-hdfs/HdfsQuotaAdminGuide.html
+* https://www.intropro.com/resources/blog/108-hadoop-hdfs-quota-space-usage-and-cli-tools
+* https://community.hortonworks.com/articles/81353/popular-ambari-rest-api-commands.html
+* https://community.hortonworks.com/content/supportkb/49416/managing-ambari-users-and-groups-with-the-rest-api.html
+* https://www.cyberciti.biz/faq/howto-linux-add-user-to-group/
+* https://hadoop.apache.org/docs/r2.4.1/hadoop-project-dist/hadoop-hdfs/HdfsPermissionsGuide.html
