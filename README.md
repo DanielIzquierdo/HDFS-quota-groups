@@ -3,8 +3,8 @@
 1) loguearse en el Server Principal Ambari con un usuario con permisos superuser para manipular hdfs (superuser group of hdfs is configured in dfs.permissions.superusergroup in hdfs-site.xml, to add an existent user to the default superuser group do: `usermod -a -G hdfs <username>`)
 
 1) llenar las variables que necesites
-export AMBARI_USER=<FILL IN> AMBARI_PASSWD=<FILL IN> AMBARI_HOST=<FILL IN> CLUSTER_NAME=<FILL IN> C_GROUP=<FILL IN>
-**C_GROUP es el grupo al cuál se le asignará una quota en común**
+`export AMBARI_USER=llenar_usuario_de_ambari AMBARI_PASSWD=llenar_password AMBARI_HOST=llenar_con_host CLUSTER_NAME=llenar_con_nombre_cluster C_GROUP=llenar_con_nombre_de_grupo`
+**C_GROUP es el grupo de usuarios a los cuales se les asignará una quota de almacenamiento en común**
 
 1) para obtener la lista de usuarios de un grupo determinado:
 `curl -u $AMBARI_USER:$AMBARI_PASSWD -H 'X-Requested-By: ambari'\
