@@ -15,8 +15,8 @@ C_GROUP = os.getenv('C_GROUP', False)
 
 op = raw_input(
     "1. asignar cuota a todo un grupo\n\
-     2. asignar cuota a usuario especifico dentro de un grupo\
-     escoja modo de operacion: ")
+     2. asignar cuota a usuario especifico dentro del grupo:\
+     modo de operacion: ")
 if not C_GROUP:
     C_GROUP = raw_input("grupo al que pertence(n) el/los usuario(s) a configurar cuota: ")
 
@@ -46,29 +46,23 @@ if(op==1):
 elif(op==2):
     esp_user=raw_input("a que usuario se le haran los cambios?: ")
     if usr_dict.get(esp_user,False):
-        single_user = "/user/"+esp_user
-        if  single_user not in ls_dirs_already:
-            dirs_to_create = [single_user]
-        else:
-            dirs_to_create = []
-        str_usr_dirs = "".join(dirs_to_create)
-        str_dirs_to_create = single_user
+        str_usr_dirs = "/user/"+esp_user
+        str_dirs_to_create = "/user/"+esp_user
         message_quota = "cuota a asignar <N>: "
     else:
         sys.exit("el usuario {} no existe dentro del grupo {}".format(esp_user, C_GROUP))
 else:
     sys.exit("operación no valida")
 
-if(dirs_to_create):
-    print("creando directorios...")
-    os.system("hdfs dfs -mkdir {}".format(str_dirs_to_create))
-    print("####### directorios creados #######")
-
+print("creando directorios...")
+os.system("hdfs dfs -mkdir {}".format(str_dirs_to_create))
+print("####### directorios creados #######")
 print("\n<N> in bytes, N can also be specified with a binary prefix for convenience, for e.g. 50g for 50 gigabytes and 2t for 2 terabytes etc.")
+
 common_quota = raw_input(message_quota)
 print("asignando Space Quota....")
 os.system("hdfs dfsadmin -setSpaceQuota {} {}".format(common_quota,str_usr_dirs))
-print("cuota asignada, puede comprobar el resultado ejecutando:\n\
+print("quota asignada, puede comprobar el resultado ejecutando:\n\
         hdfs dfs -count -h -q /user/*")
 os.remove('tmp')
 os.remove('users.txt')
